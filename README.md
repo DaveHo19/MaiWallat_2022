@@ -1,16 +1,19 @@
-# expense_app
+# MaiWallat
 
-A new Flutter project.
+## Description
+* A simple expenses applications implemented using Flutter!
+* Contains a simple UI, and SQLite data storage for user to store their budget/saving/event data.
 
-## Getting Started
+## Table of Content
+* [Preview](#Preview)
+* [Installation](#Installation)
+* [About The Application](#About-The-Application)
+* [Development Concept](#Development-Concept)
 
-This project is a starting point for a Flutter application.
+## Preview
 
-A few resources to get you started if this is your first Flutter project:
+## Installation
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## About The Application
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Development Concept
