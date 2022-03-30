@@ -108,11 +108,12 @@ class _MyReportScreenState extends State<MyReportScreen> {
                 textScaleFactor: MediaQuery.of(context).textScaleFactor,
                 style: const TextStyle(
                   fontSize: 16,
+                  
                 ))),
         Expanded(
           flex: 1,
           child: IconButton(
-            icon: const Icon(Icons.arrow_drop_down),
+            icon: const Icon(Icons.arrow_right),
             onPressed: () => setState(() {
               if (selectedFilterTypeIndex < filterList.length - 1) {
                 selectedFilterTypeIndex++;
@@ -164,7 +165,7 @@ class _MyReportScreenState extends State<MyReportScreen> {
 
   String generateSecondHeader() {
     String header = "";
-    header += "Mode: ";
+    header += "\tMode: ";
     header += (selectedFilterTypeIndex != filterList.length - 1)
         ? filterList.elementAt(selectedFilterTypeIndex)
         : DateFormat("yyyy-MM-dd").format(_sFocusedDay) +
@@ -365,7 +366,7 @@ class _MyReportScreenState extends State<MyReportScreen> {
     //monthly
     if (selectedFilterTypeIndex == 1){
       DateTime firstDayOfMonth = DateTime.utc(DateTime.now().year, DateTime.now().month, 1);
-      DateTime lastDayOfMonth = DateTime.utc(DateTime.now().year, DateTime.now().month+1).subtract(Duration(days: 1));
+      DateTime lastDayOfMonth = DateTime.utc(DateTime.now().year, DateTime.now().month+1).subtract(const Duration(days: 1));
       title += "From " + DateFormat("yyyy-MM-dd").format(firstDayOfMonth) + " to " + DateFormat("yyyy-MM-dd").format(lastDayOfMonth);
     }
     //pass 7 day
@@ -458,7 +459,7 @@ class _MyReportScreenState extends State<MyReportScreen> {
     double amount = 0;
     DateTime today = DateTime.now();
     DateTime firstDayOfMonth = DateTime.utc(DateTime.now().year, DateTime.now().month).subtract(const Duration(days: 1));
-    DateTime lastDayOfMonth = DateTime.utc(DateTime.now().year, DateTime.now().month);
+    DateTime lastDayOfMonth = DateTime.utc(DateTime.now().year, DateTime.now().month+1);
     int totalDayInMonth = DateTime(today.year, today.month +1, 0).day;
     list.forEach((element){
       DateTime itemDates = DateFormat("yyyy-MM-dd").parse(element.dateTime);
@@ -476,7 +477,7 @@ class _MyReportScreenState extends State<MyReportScreen> {
   double getPass7Day(var list){
     double amount = 0;
     DateTime today = DateTime.now();
-    DateTime sPass7Day = DateTime.now().subtract(Duration(days: 8));
+    DateTime sPass7Day = DateTime.now().subtract(const Duration(days: 8));
     DateTime lPass7Day = DateTime.now();
     int sevenDay = 7;   
     list.forEach((element){
@@ -506,11 +507,8 @@ class _MyReportScreenState extends State<MyReportScreen> {
         ? amount += element.amount
         : 0; 
       }
-
-      return amount/day;
     });
-
-    return amount;
+    return amount/day;
   }
   void pass() {}
 
