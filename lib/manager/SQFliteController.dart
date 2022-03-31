@@ -24,8 +24,6 @@ class MySQFliteController {
   }
 
   void createDatabase(Database db, int version) async {
-    
-
 
     Batch batch = db.batch();
     batch.execute('''CREATE TABLE IF NOT EXISTS $budgetTable(

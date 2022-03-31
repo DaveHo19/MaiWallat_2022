@@ -80,8 +80,10 @@ class _MyItemManageScreenState extends State<MyItemManageScreen> {
           ? ""
           : (widget.itemType == ItemEnum.event)
               ? widget.passEventItem!.title
-              : ((widget.itemType == ItemEnum.budgetTag) || (widget.itemType == ItemEnum.savingTag))
-              ? widget.passTagItem!.name : "";
+              : ((widget.itemType == ItemEnum.budgetTag) ||
+                      (widget.itemType == ItemEnum.savingTag))
+                  ? widget.passTagItem!.name
+                  : "";
     }
 
     if (widget.itemType == ItemEnum.event) {
@@ -351,7 +353,7 @@ class _MyItemManageScreenState extends State<MyItemManageScreen> {
           hintText: "Enter amount",
         ),
         keyboardType: TextInputType.number,
-        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+        inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-9.]'))],
         controller: textAmountController,
         //initialValue: (widget.type == ManageEnum.create) ? 0.toStringAsFixed(2) : widget.passItem!.amount.toStringAsFixed(2),
         readOnly: (widget.manageType == ManageEnum.delete),
@@ -415,10 +417,11 @@ class _MyItemManageScreenState extends State<MyItemManageScreen> {
   }
 
   void initialSelectedItem() {
-    if ((widget.itemType == ItemEnum.budgetTag) || (widget.itemType == ItemEnum.savingTag)){
+    if ((widget.itemType == ItemEnum.budgetTag) ||
+        (widget.itemType == ItemEnum.savingTag)) {
       return;
-    } 
-    if ((widget.itemType != ItemEnum.event) ){
+    }
+    if ((widget.itemType != ItemEnum.event)) {
       String selectedTag;
       if (widget.manageType != ManageEnum.create) {
         selectedTag = ((widget.itemType == ItemEnum.budget)
@@ -451,22 +454,24 @@ class _MyItemManageScreenState extends State<MyItemManageScreen> {
             ? initTagList.getSavingTagList()
             : <String>[];
 
-    MySQFliteController mySQF = MySQFliteController();
-    List<TagItem> tagItemFromDB = <TagItem>[];
-    if (widget.itemType == ItemEnum.budget) {
-      tagItemFromDB = await mySQF.retrieveBudgetTagList();
-      if (tagItemFromDB.isNotEmpty) {
-        tagItemFromDB.forEach((element) {
-          tagList.add(element.name);
-        });
+    if (!kIsWeb) {
+      MySQFliteController mySQF = MySQFliteController();
+      List<TagItem> tagItemFromDB = <TagItem>[];
+      if (widget.itemType == ItemEnum.budget) {
+        tagItemFromDB = await mySQF.retrieveBudgetTagList();
+        if (tagItemFromDB.isNotEmpty) {
+          tagItemFromDB.forEach((element) {
+            tagList.add(element.name);
+          });
+        }
       }
-    }
-    if (widget.itemType == ItemEnum.saving) {
-      tagItemFromDB = await mySQF.retrieveSavingTagList();
-      if (tagItemFromDB.isNotEmpty) {
-        tagItemFromDB.forEach((element) {
-          tagList.add(element.name);
-        });
+      if (widget.itemType == ItemEnum.saving) {
+        tagItemFromDB = await mySQF.retrieveSavingTagList();
+        if (tagItemFromDB.isNotEmpty) {
+          tagItemFromDB.forEach((element) {
+            tagList.add(element.name);
+          });
+        }
       }
     }
   }
@@ -708,7 +713,7 @@ class _MyItemManageScreenState extends State<MyItemManageScreen> {
                 : const SnackBar(
                     content: Text("Error => Failed to edit budget tag!"));
             ScaffoldMessenger.of(context).showSnackBar(sbMsg);
-            if (updateResult == 1){
+            if (updateResult == 1) {
               Navigator.pop(context, true);
             } else {
               return;
@@ -716,7 +721,7 @@ class _MyItemManageScreenState extends State<MyItemManageScreen> {
           }
           break;
         case ItemEnum.savingTag:
- if (kIsWeb) {
+          if (kIsWeb) {
             Navigator.pop(context, true);
           } else {
             MySQFliteController mySQF = MySQFliteController();
@@ -730,7 +735,7 @@ class _MyItemManageScreenState extends State<MyItemManageScreen> {
                 : const SnackBar(
                     content: Text("Error => Failed to edit saving tag!"));
             ScaffoldMessenger.of(context).showSnackBar(sbMsg);
-            if (updateResult == 1){
+            if (updateResult == 1) {
               Navigator.pop(context, true);
             } else {
               return;
@@ -807,19 +812,19 @@ class _MyItemManageScreenState extends State<MyItemManageScreen> {
         }
         break;
       case ItemEnum.budgetTag:
-        if (kIsWeb){
+        if (kIsWeb) {
           Navigator.pop(context, true);
         } else {
           MySQFliteController mySQF = MySQFliteController();
           TagItem deleteTag = widget.passTagItem!;
           int deleteResult = await mySQF.deleteSelectedBudgetTag(deleteTag);
           SnackBar sbMsg = (deleteResult != 0)
-            ? const SnackBar(
-              content: Text("Success => Successfully deleted!"))
-            : const SnackBar(
-              content: Text("Error => Failed to delete budget tag!"));
+              ? const SnackBar(
+                  content: Text("Success => Successfully deleted!"))
+              : const SnackBar(
+                  content: Text("Error => Failed to delete budget tag!"));
           ScaffoldMessenger.of(context).showSnackBar(sbMsg);
-          if (deleteResult != 0){
+          if (deleteResult != 0) {
             Navigator.pop(context, true);
           } else {
             return;
@@ -827,24 +832,24 @@ class _MyItemManageScreenState extends State<MyItemManageScreen> {
         }
         break;
       case ItemEnum.savingTag:
-         if (kIsWeb){
+        if (kIsWeb) {
           Navigator.pop(context, true);
         } else {
           MySQFliteController mySQF = MySQFliteController();
           TagItem deleteTag = widget.passTagItem!;
           int deleteResult = await mySQF.deleteSelectedSavingTag(deleteTag);
           SnackBar sbMsg = (deleteResult != 0)
-            ? const SnackBar(
-              content: Text("Success => Successfully deleted!"))
-            : const SnackBar(
-              content: Text("Error => Failed to delete saving tag!"));
+              ? const SnackBar(
+                  content: Text("Success => Successfully deleted!"))
+              : const SnackBar(
+                  content: Text("Error => Failed to delete saving tag!"));
           ScaffoldMessenger.of(context).showSnackBar(sbMsg);
-          if (deleteResult != 0){
+          if (deleteResult != 0) {
             Navigator.pop(context, true);
           } else {
             return;
           }
-        }     
+        }
         break;
     }
   }

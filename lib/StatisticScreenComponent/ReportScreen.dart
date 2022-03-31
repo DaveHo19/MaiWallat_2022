@@ -371,8 +371,8 @@ class _MyReportScreenState extends State<MyReportScreen> {
     }
     //pass 7 day
     if (selectedFilterTypeIndex == 2){
-      DateTime sPass7Day = DateTime.now().subtract(Duration(days: 7));
-      DateTime lPass7Day = DateTime.now().subtract(Duration(days: 1));
+      DateTime sPass7Day = DateTime.now().subtract(const Duration(days: 7));
+      DateTime lPass7Day = DateTime.now().subtract(const Duration(days: 1));
       title += "From " + DateFormat("yyyy-MM-dd").format(sPass7Day) + " to " + DateFormat("yyyy-MM-dd").format(lPass7Day);     
     }
     //range
