@@ -51,10 +51,10 @@ class _MyItemManageScreenState extends State<MyItemManageScreen> {
 
   @override
   void initState() {
+    super.initState();
     generateTag();
     generateDuration();
     initialSelectedItem();
-
     if ((widget.itemType == ItemEnum.budget) ||
         (widget.itemType == ItemEnum.saving)) {
       textAmountController.text = (widget.manageType == ManageEnum.create)
@@ -63,7 +63,6 @@ class _MyItemManageScreenState extends State<MyItemManageScreen> {
               ? widget.passBudgetItem!.amount.toString()
               : widget.passSavingItem!.amount.toString();
     }
-
     if ((widget.itemType == ItemEnum.budget) ||
         (widget.itemType == ItemEnum.event)) {
       textDescController.text = (widget.manageType == ManageEnum.create)
@@ -72,7 +71,6 @@ class _MyItemManageScreenState extends State<MyItemManageScreen> {
               ? widget.passBudgetItem?.description ?? ""
               : widget.passEventItem?.description ?? "";
     }
-
     if ((widget.itemType == ItemEnum.event) ||
         (widget.itemType == ItemEnum.budgetTag) ||
         (widget.itemType == ItemEnum.savingTag)) {
@@ -85,15 +83,12 @@ class _MyItemManageScreenState extends State<MyItemManageScreen> {
                   ? widget.passTagItem!.name
                   : "";
     }
-
     if (widget.itemType == ItemEnum.event) {
       textDateController.text = (widget.manageType == ManageEnum.create)
           ? DateFormat("yyyy-MM-dd").format(DateTime.now())
           : widget.passEventItem?.dateTime ??
               DateFormat("yyyy-MM-dd").format(DateTime.now());
     }
-
-    super.initState();
   }
 
   @override
