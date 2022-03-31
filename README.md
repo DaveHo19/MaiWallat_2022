@@ -1,6 +1,6 @@
 # MaiWallat
 
-## Description
+## Short Description
 * A simple expenses applications implemented using Flutter!
 * Contains a simple UI, and SQLite data storage for user to store their budget/saving/event data.
 
@@ -13,8 +13,8 @@
 ## Preview
 
 ## Installation
-* You can download the file using ```git clone``` using HTTPS or 
-```https://github.com/DaveHo19/flutter_expense_app.git```
+* You can download the file using ```git clone``` with HTTPS or 
+```https://github.com/DaveHo19/Flutter-MaiWallat.git```
 * The flutter required library will be :
   * intl 
   * table_calendar
@@ -25,7 +25,7 @@
   * flutter_launcher_icons
 
 ## About The Application
-The MaiWallat application is developed using dart/flutter in Visual Studio Code. In the applications, it consists of FutureBuilders, Columns, Rows, Containers, Expanded etc.
+The MaiWallat application is developed using dart/flutter in Visual Studio Code. The applications is used to record expenses, saving and events and allows user to track these components.
 
 ## Development Procedure
 The procedure of develop the application is based on the step below:
