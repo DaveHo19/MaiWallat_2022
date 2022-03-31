@@ -11,6 +11,7 @@
 * [Development Procedure](#Development-Procedure)
 
 ## Preview
+* To be construct
 
 ## Installation
 * You can download the file using ```git clone``` with HTTPS or 
