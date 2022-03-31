@@ -211,11 +211,4 @@ class MySQFliteController {
     return await db
         .delete(savingTagTable, where: 'id = ?', whereArgs: [savingTag.id]);
   }
-
-
-  void initTagItems(){
-
-
-  }
-
 }
