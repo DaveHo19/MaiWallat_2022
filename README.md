@@ -25,7 +25,9 @@
   * flutter_launcher_icons
 
 ## About The Application
-The MaiWallat application is developed using dart/flutter in Visual Studio Code. The applications is used to record expenses, saving and events and allows user to track these components.
+The MaiWallat application is developed using dart/flutter in Visual Studio Code. 
+The applications is used to record expenses, saving and events and allows user to track these components.
+Besides, it also allow user to check the statistic based on several conditions.
 
 ## Development Procedure
 The procedure of develop the application is based on the step below:
