@@ -1,6 +1,4 @@
-import 'package:intl/intl.dart';
-
-import '_itemComponent.dart';
+import 'package:expense_app/component/_itemComponent.dart';
 
 class Event{
 

@@ -153,6 +153,35 @@ class MySQFliteController {
             ));
   }
 
+  Future<List<Budget>> retrieveBudgetListBasedOnDate(String selectedDate) async {
+    final db = await getDatabaseRef();
+    final List<Map<String, dynamic>> maps = await db.query(budgetTable, where: "dateTime = ?", whereArgs: [selectedDate]);
+    
+    return List.generate(
+        maps.length,
+        (i) => Budget(
+              id: maps[i]['id'],
+              tag: maps[i]['tag'],
+              description: maps[i]['description'],
+              amount: maps[i]['amount'],
+              dateTime: maps[i]['dateTime'],
+            ));
+  }
+
+  Future<List<Saving>> retrieveSavingListBasedOnDate(String selectedDate) async {
+    final db = await getDatabaseRef();
+    final List<Map<String, dynamic>> maps = await db.query(savingTable, where: "dateTime = ?", whereArgs: [selectedDate]);
+   
+    return List.generate(
+        maps.length,
+        (i) => Saving(
+              id: maps[i]['id'],
+              tag: maps[i]['tag'],
+              amount: maps[i]['amount'],
+              dateTime: maps[i]['dateTime'],
+            ));
+  }
+
   Future<int> updateSelectedBudget(Budget budget) async {
     final db = await getDatabaseRef();
     return await db.update(budgetTable, budget.toMap(),

@@ -115,7 +115,7 @@ class _BaseScreenState extends State<BaseScreen> {
 
   Widget _buildGridControls(BuildContext context) {
     return GridView.count(
-      crossAxisCount: 3,
+      crossAxisCount: 2,
       mainAxisSpacing: 5,
       crossAxisSpacing: 5,
       children: [
@@ -132,13 +132,13 @@ class _BaseScreenState extends State<BaseScreen> {
           size: GFSize.MEDIUM,
           onPressed: goToManageSavingScreen,
         ),
-        GFIconButton(
-          icon: const Icon(Icons.event_note_outlined,
-              color: Colors.white, size: GFSize.LARGE),
-          color: Colors.orangeAccent,
-          size: GFSize.MEDIUM,
-          onPressed: goToManageEventScreen,
-        ),
+        // GFIconButton(
+        //   icon: const Icon(Icons.event_note_outlined,
+        //       color: Colors.white, size: GFSize.LARGE),
+        //   color: Colors.orangeAccent,
+        //   size: GFSize.MEDIUM,
+        //   onPressed: goToManageEventScreen,
+        // ),
         GFIconButton(
           icon: const Icon(Icons.sell, color: Colors.white, size: GFSize.LARGE),
           color: Colors.pink,
@@ -151,12 +151,12 @@ class _BaseScreenState extends State<BaseScreen> {
           size: GFSize.MEDIUM,
           onPressed: goToManageSavingTagScreen,
         ),
-         GFIconButton(
-          icon: const Icon(Icons.question_mark, color: Colors.white, size: GFSize.LARGE),
-          color: Colors.green,
-          size: GFSize.MEDIUM,
-          onPressed: message,
-        ),
+        //  GFIconButton(
+        //   icon: const Icon(Icons.question_mark, color: Colors.white, size: GFSize.LARGE),
+        //   color: Colors.green,
+        //   size: GFSize.MEDIUM,
+        //   onPressed: message,
+        // ),
          GFIconButton(
           icon: const Icon(Icons.list_alt, color: Colors.white, size: GFSize.LARGE),
           color: Colors.pink,
@@ -169,12 +169,12 @@ class _BaseScreenState extends State<BaseScreen> {
           size: GFSize.MEDIUM,
           onPressed: goToViewSavingTagListScreen,
         ),       
-        GFIconButton(
-          icon: const Icon(Icons.question_mark, color: Colors.white, size: GFSize.LARGE),
-          color: Colors.green,
-          size: GFSize.MEDIUM,
-          onPressed: message,
-        ),  
+        // GFIconButton(
+        //   icon: const Icon(Icons.question_mark, color: Colors.white, size: GFSize.LARGE),
+        //   color: Colors.green,
+        //   size: GFSize.MEDIUM,
+        //   onPressed: message,
+        // ),  
       ],
     );
   }

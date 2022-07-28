@@ -23,7 +23,7 @@ class _MyExpensesScreenState extends State<MyExpensesScreen> {
   DateTime? _selectedDay;
 
   List<Budget> budgetList = <Budget>[];
-  List<Event> eventList = <Event>[];
+  //List<Event> eventList = <Event>[];
   List<Saving> savingList = <Saving>[];
 
   @override
@@ -132,14 +132,16 @@ class _MyExpensesScreenState extends State<MyExpensesScreen> {
     if (kIsWeb) {
       budgetList.clear();
       savingList.clear();
-      eventList.clear();
+      //eventList.clear();
       initializeTempList();
       return true;
     } else {
       MySQFliteController mySQFController = MySQFliteController();
-      budgetList = await mySQFController.retrieveBudgetList();
-      savingList = await mySQFController.retrieveSavingList();
-      eventList = await mySQFController.retrieveEventList();
+      //budgetList = await mySQFController.retrieveBudgetList();
+      budgetList = await mySQFController.retrieveBudgetListBasedOnDate(DateFormat("yyyy-MM-dd").format(_focusedDay));
+      //savingList = await mySQFController.retrieveSavingList();
+      savingList = await mySQFController.retrieveSavingListBasedOnDate(DateFormat("yyyy-MM-dd").format(_focusedDay));
+      //eventList = await mySQFController.retrieveEventList();
       Future.delayed(Duration(seconds: 10));
       return true;
     }
@@ -153,9 +155,9 @@ class _MyExpensesScreenState extends State<MyExpensesScreen> {
 
     if (budgetList.isNotEmpty) {
       budgetList.forEach((element) {
-        if (element.dateTime == selectedDate) {
+        //if (element.dateTime == selectedDate) {
           budgetAmount += element.amount;
-        }
+        //}
       });
     }
 
@@ -166,13 +168,13 @@ class _MyExpensesScreenState extends State<MyExpensesScreen> {
         }
       });
     }
-    if (eventList.isNotEmpty) {
-      eventList.forEach((element) {
-        if (element.dateTime == selectedDate) {
-          eventQty++;
-        }
-      });
-    }
+    // if (eventList.isNotEmpty) {
+    //   eventList.forEach((element) {
+    //     if (element.dateTime == selectedDate) {
+    //       eventQty++;
+    //     }
+    //   });
+    // }
 
     ListTile budgetTile = ListTile(
       title: const Text("My Usages"),
@@ -188,16 +190,16 @@ class _MyExpensesScreenState extends State<MyExpensesScreen> {
         goToViewItemListScreen(ItemEnum.saving),
       }
     );
-    ListTile eventTile = ListTile(
-      title: const Text("My Events"),
-      subtitle: Text("Quantity: " + eventQty.toString()),
-      onTap: () => {
-        goToViewItemListScreen(ItemEnum.event),
-      }
-    );
+    // ListTile eventTile = ListTile(
+    //   title: const Text("My Events"),
+    //   subtitle: Text("Quantity: " + eventQty.toString()),
+    //   onTap: () => {
+    //     goToViewItemListScreen(ItemEnum.event),
+    //   }
+    // );
     items.add(budgetTile);
     items.add(savingTile);
-    items.add(eventTile);
+    //items.add(eventTile);
     return items;
   }
 
@@ -220,7 +222,7 @@ class _MyExpensesScreenState extends State<MyExpensesScreen> {
           duration: i.toString() + " hour(s)");
       budgetList.add(b);
       savingList.add(s);
-      eventList.add(e);
+      //eventList.add(e);
       setState(() {
         pass();
       });
